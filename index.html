@@ -40,10 +40,21 @@
           var data=this.data;
           
           this.el.addEventListener('click',function(){
-            //set the skybox source to the new image as per the spot
+            //TODO: set an IF so that it plays a video instead
             var sky=document.getElementById("skybox");
-            sky.setAttribute("src",data.linkto);
-            
+            var vs=document.getElementById("videosphere");
+            if(data.linktype == "photo")
+            {
+              //set the skybox source to the new image as per the spot
+              sky.setAttribute("src",data.linkto);
+              vs.setAttribute("src",null);
+            }
+            else
+            {
+              //set the videosphere back
+              sky.setAttribute("src",null);
+              vs.setAttribute("src",data.linkto);
+            }
             var spotcomp=document.getElementById("spots");
             var currspots=this.parentElement.getAttribute("id");
             //create event for spots component to change the spots data
@@ -60,21 +71,24 @@
         <img id="hangar" src="assets/thumbnail2.jpg"/>
         <img id="hires" src="assets/full.jpg"/>
         <img id="hotspot" src="assets/hotspot.png"/>
+        <video id="vid" src="assets/preview.mp4"/>
       </a-assets>
       <a-sky id="skybox" src="#default"> </a-sky>
+      <a-videosphere src=""></a-videosphere>
       <a-entity id="spots" hotspots>
         <a-entity id="group-point1">
-          <a-image spot="linkto:#hangar;spotgroup:group-point2" position="-4 0 10"></a-image>
+          <a-image spot="linktype:video;linkto:#vid;spotgroup:group-point2" position="-4 0 10"></a-image>
         </a-entity>
         <a-entity id="group-point2" scale="0 0 0">
-          <a-image spot="linkto:#default;spotgroup:group-point1" position="10 0 -8"></a-image>
-          <a-image spot="linkto:#hires;spotgroup:group-point3" position="0 0 10"></a-image>
+          <a-image spot="linktype:photo;linkto:#default;spotgroup:group-point1" position="10 0 -8"></a-image>
+          <a-image spot="linktype:photo;linkto:#hires;spotgroup:group-point3" position="0 0 10"></a-image>
         </a-entity>
         <a-entity id="group-point3" scale="0 0 0">
-          <a-image spot="linkto:#hangar;spotgroup:group-point2" position="10 0 3"></a-image>
+          <a-image spot="linktype:video;linkto:#vid;spotgroup:group-point2" position="10 0 3"></a-image>
         </a-entity>
 </a-entity>
       <a-entity id="cam" camera position="0 1.6 0" look-controls>
+        <!-- Click -->
         <a-entity cursor="fuse:true;fuseTimeout:2000"
                   geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.02"
                   position="0 0 -1.8"
