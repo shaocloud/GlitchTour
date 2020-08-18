@@ -49,12 +49,16 @@
               //set the skybox source to the new image as per the spot
               sky.setAttribute("src",data.linkto);
               vs.setAttribute("src", "");
+              sky.setAttribute("scale","1 1 1");
+              vs.setAttribute("scale","0 0 0");
             }
             else
             {
               //set the videosphere back
               sky.setAttribute("src", "");
               vs.setAttribute("src",data.linkto);
+              vs.setAttribute("scale","1 1 1");
+              sky.setAttribute("scale","0 0 0");
             }
             var spotcomp=document.getElementById("spots");
             var currspots=this.parentElement.getAttribute("id");
