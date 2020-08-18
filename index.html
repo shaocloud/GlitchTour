@@ -42,7 +42,7 @@
           this.el.addEventListener('click',function(){
             //TODO: set an IF so that it plays a video instead
             var sky=document.getElementById("skybox");
-            var vs=document.getElementById("videosphere");
+            var vs=document.getElementById("vs");
             if(data.linktype == "photo")
             {
               //set the skybox source to the new image as per the spot
@@ -74,7 +74,7 @@
         <video id="vid" src="assets/preview.mp4"/>
       </a-assets>
       <a-sky id="skybox" src="#default"> </a-sky>
-      <a-videosphere src=""></a-videosphere>
+      <a-videosphere id="vs" src=""></a-videosphere>
       <a-entity id="spots" hotspots>
         <a-entity id="group-point1">
           <a-image spot="linktype:video;linkto:#vid;spotgroup:group-point2" position="-4 0 10"></a-image>
